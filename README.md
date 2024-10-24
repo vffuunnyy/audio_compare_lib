@@ -12,7 +12,7 @@ This Rust library provides functionality to compare two audio files based on var
 
 ```toml
 [dependencies]
-audio-compare = { git = "https://github.com/vffuunnyy/audio_compare_lib.git", version = "0.1.0" }
+audio_compare_lib = { git = "https://github.com/vffuunnyy/audio_compare_lib.git", version = "0.1.0" }
 ```
 
 # Usage
