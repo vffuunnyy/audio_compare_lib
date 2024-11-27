@@ -1,6 +1,6 @@
 [package]
 name = "audio_compare_lib"
-version = "0.1.0"
+version = "0.1.1"
 edition = "2021"
 description = "A Rust library for comparing wav audio files."
 repository = "https://github.com/vffuunnyy/audio_compare_lib"
