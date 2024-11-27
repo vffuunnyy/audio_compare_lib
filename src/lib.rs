@@ -76,15 +76,25 @@ fn read_wav(filename: PathBuf) -> Vec<f32> {
 }
 
 fn apply_shift(audio1: &[f32], audio2: &[f32], shift: isize) -> (Vec<f32>, Vec<f32>) {
+    let shift = shift as isize;
+    let len1 = audio1.len() as isize;
+    let len2 = audio2.len() as isize;
+    let overlap = if shift > 0 {
+        (len1 - shift).min(len2)
+    } else {
+        (len2 + shift).min(len1)
+    }
+    .max(0) as usize;
+
     if shift > 0 {
         (
-            audio1[shift as usize..].to_vec(),
-            audio2[..audio1.len() - shift as usize].to_vec(),
+            audio1[shift as usize..shift as usize + overlap].to_vec(),
+            audio2[..overlap].to_vec(),
         )
     } else {
         (
-            audio1[..audio2.len() + shift as usize].to_vec(),
-            audio2[(-shift) as usize..].to_vec(),
+            audio1[..overlap].to_vec(),
+            audio2[(-shift) as usize..(-shift) as usize + overlap].to_vec(),
         )
     }
 }
